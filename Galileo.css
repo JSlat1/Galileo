@@ -1,0 +1,53 @@
+body {
+    overflow: hidden;
+    margin: 0;
+  }
+  
+  .ui {
+    position: absolute;
+  }
+  
+  .lineCheckContainer {
+    margin-left: 1em;
+    margin-top: 0.5em;
+  }
+  
+  .orbitCheckContainer {
+    margin-left: 1em;
+    margin-top: 1.5em;
+  }
+  
+  .staticCheckContainer {
+    margin-left: 1em;
+    margin-top: 2.75em;
+  }
+  
+  .movingCheckContainer {
+    margin-left: 1em;
+    margin-top: 4em;
+  }
+  
+  .horizontalCheckContainer {
+    margin-left: 1em;
+    margin-top: 5.25em;
+  }
+  
+  .aboveCheckContainer {
+    margin-left: 1em;
+    margin-top: 6.5em;
+  }
+  
+  button {
+    width: 10em;
+    height: 1.5em;
+  }
+  
+  
+  LABEL.indented-checkbox-text {
+    margin-left: 1.2em;
+    display: block;
+    position: relative;
+    margin-top: -1.4em; /* make this margin match whatever your line-height is */
+    line-height: 1.4em; /* can be set here, or elsewehere */
+  }
+  
