@@ -1,5 +1,5 @@
-import * as THREE from '../ThreeJS/three.js-master';
-import {OrbitControls} from '../ThreeJS/three.js-master/examples/jsm/controls/OrbitControls';
+import * as THREE from '/ThreeJS/three.js-master';
+import {OrbitControls} from '/ThreeJS/three.js-master/examples/jsm/controls/OrbitControls';
 
 // Texture Variables
 var starsTexture = "https://drive.google.com/file/d/1ccCSE8ohmzU6gC8sHAMlXhBF0fApPb3i/view?usp=sharing";
@@ -30,7 +30,7 @@ let calSize = 3;
 let ioSize = 3;
 
 // Set Distance Variables
-distMultiplier = 4;
+let distMultiplier = 4;
 let jupDist = 240;
 let earthDist = 80;
 let moonDist = 15;
@@ -111,6 +111,16 @@ function init() {
     const textureLoader = new THREE.TextureLoader();
 
     drawObjects();
+
+    const pointLight = new THREE.PointLight(0xFFFFFF, 2, 300);
+    scene.add(pointLight);
+
+    renderer.setAnimationLoop(animate);
+    window.addEventListener('resize', function(){
+        camera.aspect = window.innerWidth / this.window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    })
 }
 
 function drawObjects() {
@@ -144,12 +154,10 @@ function drawObjects() {
     const callisto = createPlanet(calSize, callistoTexture, calDist, jupiter);
 
     // Finish Later //
-    if (showOrbit) {
-      drawOrbits();
-    }
+    //if (showOrbit) {
+    //  drawOrbits();
+    //}
 
-    const pointLight = new THREE.PointLight(0xFFFFFF, 2, 300);
-    scene.add(pointLight);
 }
 
 function createPlanet(size, texture, position, parentObj){
@@ -182,8 +190,27 @@ function fixCamera() {
 }
 
 function animate() {
-    //Self-Rotation
+    // Self-Rotation
     sun.rotateY(0.004);
-    earth.mesh.rotateY(0.004)
+    earth.mesh.rotateY(0.02);
+    jupiter.mesh.rotateY(0.04);
+    moon.mesh.rotateY(0.0007);
+    io.mesh.rotateY(0.01);
+    ganymede.mesh.rotateY(0.003);
+    europa.mesh.rotateY(0.006);
+    callisto.mesh.rotateY(0.001);
+
+    // Around Sun Rotation
+    earth.obj.rotateY(0.01);
+    jupiter.obj.rotateY(0.0008);
+    moon.obj.rotateY(0.1);
+    io.obj.rotateY(2);
+    europa.obj.rotateY(1);
+    ganymede.obj.rotateY(0.5);
+    callisto.obj.rotateY(0.2);
+
+    renderer.render(scene, camera);
 
 }
+
+start();
